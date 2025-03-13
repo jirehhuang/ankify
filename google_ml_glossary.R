@@ -69,7 +69,7 @@ deck <- data.frame(id = term_ids) %>%
          term_url = sprintf("%s#%s", glossary_url, id),
          term = sprintf('<a href=\"%s\"><strong>%s</strong></a>', term_url, text),
          definition = "",
-         tags = "")
+         tags = "google-ml-glossary")
 
 ## Get all elements from first anchor to before license
 license <- "<p>Except as otherwise noted, the content of this page is licensed under the <a href=\"https://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 License</a>, and code samples are licensed under the <a href=\"https://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 License</a>. For details, see the <a href=\"https://developers.google.com/site-policies\">Google Developers Site Policies</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>"
@@ -121,7 +121,7 @@ for (i in seq_len(nrow(deck))){
       tolower() %>%
       gsub(" ", "-", .)
     
-    deck$tags[i] <- paste(tags_i, collapse = " ")
+    deck$tags[i] <- paste(c(deck$tags[i], tags_i), collapse = " ")
     
     elem_text_i <- setdiff(elem_text_i, icon_containers_i)
   }
