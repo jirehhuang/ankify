@@ -163,7 +163,7 @@ deck <- deck %>%
 ## Write deck
 header <- paste(c("#separator:tab", "#html:true", "#tags column:3", collapse = "\n"))
 
-time_id <- gsub("\\.", "-", format(Sys.time(), "%Y-%m-%d_%H-%M"))
+time_id <- gsub("\\.", "-", format(Sys.time(), "%Y-%m-%d"))
 
 cat(paste(c(header, deck$cloze), collapse = "\n"),
-    file = sprintf("Google Machine Learning Glossary Anki Deck.txt"))
+    file = sprintf("Google Machine Learning Glossary Anki Deck %s.txt", time_id))
