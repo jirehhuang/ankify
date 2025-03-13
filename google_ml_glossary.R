@@ -45,21 +45,6 @@ term_ids <- terms %>%
 term_texts <- terms %>% 
   html_text(trim = TRUE)
 
-## Download all images
-anki_img_dir <- "C:/Users/ijire/AppData/Roaming/Anki2/Philologos Huang/collection.media"
-doc %>%
-  html_elements("img") %>%
-  html_attr("src") %>%
-  `[`(!grepl("https", .)) %>%
-  sprintf("https://%s%s", urltools::domain(glossary_url), .) %>%
-  sapply(function(x){
-    destfile <- file.path(anki_img_dir, basename(x))
-    if (!file.exists(destfile)){
-      download.file(x, destfile, mode = "wb")
-    }
-  }) %>%
-  invisible()
-
 ## Get all element classes
 doc %>%
   html_nodes("*") %>%
